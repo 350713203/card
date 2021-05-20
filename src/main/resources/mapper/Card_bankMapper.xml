@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.card.dao.Card_bankMapper" >
+  <resultMap id="BaseResultMap" type="com.card.entity.Card_bank" >
+    <id column="card_id" property="cardId" jdbcType="INTEGER" />
+    <result column="user_id" property="userId" jdbcType="INTEGER" />
+    <result column="card_name" property="cardName" jdbcType="VARCHAR" />
+    <result column="card_total_name" property="cardTotalName" jdbcType="VARCHAR" />
+    <result column="card_number" property="cardNumber" jdbcType="VARCHAR" />
+    <result column="card_end_day" property="cardEndDay" jdbcType="TIMESTAMP" />
+    <result column="card_kind" property="cardKind" jdbcType="VARCHAR" />
+    <result column="card_color" property="cardColor" jdbcType="VARCHAR" />
+    <result column="card_year" property="cardYear" jdbcType="VARCHAR" />
+    <result column="card_status" property="cardStatus" jdbcType="VARCHAR" />
+    <result column="card_describe" property="cardDescribe" jdbcType="VARCHAR" />
+    <result column="card_create_date" property="cardCreateDate" jdbcType="TIMESTAMP" />
+    <result column="card_update_date" property="cardUpdateDate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    card_id, user_id, card_name, card_total_name, card_number, card_end_day, card_kind, 
+    card_color, card_year, card_status, card_describe, card_create_date, card_update_date
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from card_bank
+    where card_id = #{cardId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from card_bank
+    where card_id = #{cardId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.card.entity.Card_bank" >
+    insert into card_bank (card_id, user_id, card_name, 
+      card_total_name, card_number, card_end_day, 
+      card_kind, card_color, card_year, 
+      card_status, card_describe, card_create_date, 
+      card_update_date)
+    values (#{cardId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{cardName,jdbcType=VARCHAR}, 
+      #{cardTotalName,jdbcType=VARCHAR}, #{cardNumber,jdbcType=VARCHAR}, #{cardEndDay,jdbcType=TIMESTAMP}, 
+      #{cardKind,jdbcType=VARCHAR}, #{cardColor,jdbcType=VARCHAR}, #{cardYear,jdbcType=VARCHAR}, 
+      #{cardStatus,jdbcType=VARCHAR}, #{cardDescribe,jdbcType=VARCHAR}, #{cardCreateDate,jdbcType=TIMESTAMP}, 
+      #{cardUpdateDate,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.card.entity.Card_bank" >
+    insert into card_bank
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="cardId != null" >
+        card_id,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="cardName != null" >
+        card_name,
+      </if>
+      <if test="cardTotalName != null" >
+        card_total_name,
+      </if>
+      <if test="cardNumber != null" >
+        card_number,
+      </if>
+      <if test="cardEndDay != null" >
+        card_end_day,
+      </if>
+      <if test="cardKind != null" >
+        card_kind,
+      </if>
+      <if test="cardColor != null" >
+        card_color,
+      </if>
+      <if test="cardYear != null" >
+        card_year,
+      </if>
+      <if test="cardStatus != null" >
+        card_status,
+      </if>
+      <if test="cardDescribe != null" >
+        card_describe,
+      </if>
+      <if test="cardCreateDate != null" >
+        card_create_date,
+      </if>
+      <if test="cardUpdateDate != null" >
+        card_update_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="cardId != null" >
+        #{cardId,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="cardName != null" >
+        #{cardName,jdbcType=VARCHAR},
+      </if>
+      <if test="cardTotalName != null" >
+        #{cardTotalName,jdbcType=VARCHAR},
+      </if>
+      <if test="cardNumber != null" >
+        #{cardNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="cardEndDay != null" >
+        #{cardEndDay,jdbcType=TIMESTAMP},
+      </if>
+      <if test="cardKind != null" >
+        #{cardKind,jdbcType=VARCHAR},
+      </if>
+      <if test="cardColor != null" >
+        #{cardColor,jdbcType=VARCHAR},
+      </if>
+      <if test="cardYear != null" >
+        #{cardYear,jdbcType=VARCHAR},
+      </if>
+      <if test="cardStatus != null" >
+        #{cardStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="cardDescribe != null" >
+        #{cardDescribe,jdbcType=VARCHAR},
+      </if>
+      <if test="cardCreateDate != null" >
+        #{cardCreateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="cardUpdateDate != null" >
+        #{cardUpdateDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.card.entity.Card_bank" >
+    update card_bank
+    <set >
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="cardName != null" >
+        card_name = #{cardName,jdbcType=VARCHAR},
+      </if>
+      <if test="cardTotalName != null" >
+        card_total_name = #{cardTotalName,jdbcType=VARCHAR},
+      </if>
+      <if test="cardNumber != null" >
+        card_number = #{cardNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="cardEndDay != null" >
+        card_end_day = #{cardEndDay,jdbcType=TIMESTAMP},
+      </if>
+      <if test="cardKind != null" >
+        card_kind = #{cardKind,jdbcType=VARCHAR},
+      </if>
+      <if test="cardColor != null" >
+        card_color = #{cardColor,jdbcType=VARCHAR},
+      </if>
+      <if test="cardYear != null" >
+        card_year = #{cardYear,jdbcType=VARCHAR},
+      </if>
+      <if test="cardStatus != null" >
+        card_status = #{cardStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="cardDescribe != null" >
+        card_describe = #{cardDescribe,jdbcType=VARCHAR},
+      </if>
+      <if test="cardCreateDate != null" >
+        card_create_date = #{cardCreateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="cardUpdateDate != null" >
+        card_update_date = #{cardUpdateDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where card_id = #{cardId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.card.entity.Card_bank" >
+    update card_bank
+    set user_id = #{userId,jdbcType=INTEGER},
+      card_name = #{cardName,jdbcType=VARCHAR},
+      card_total_name = #{cardTotalName,jdbcType=VARCHAR},
+      card_number = #{cardNumber,jdbcType=VARCHAR},
+      card_end_day = #{cardEndDay,jdbcType=TIMESTAMP},
+      card_kind = #{cardKind,jdbcType=VARCHAR},
+      card_color = #{cardColor,jdbcType=VARCHAR},
+      card_year = #{cardYear,jdbcType=VARCHAR},
+      card_status = #{cardStatus,jdbcType=VARCHAR},
+      card_describe = #{cardDescribe,jdbcType=VARCHAR},
+      card_create_date = #{cardCreateDate,jdbcType=TIMESTAMP},
+      card_update_date = #{cardUpdateDate,jdbcType=TIMESTAMP}
+    where card_id = #{cardId,jdbcType=INTEGER}
+  </update>
+</mapper>

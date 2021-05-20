@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.card.dao.ShopsMapper" >
+  <resultMap id="BaseResultMap" type="com.card.entity.Shops" >
+    <id column="shops_id" property="shopsId" jdbcType="INTEGER" />
+    <result column="shops_code" property="shopsCode" jdbcType="INTEGER" />
+    <result column="shops_name" property="shopsName" jdbcType="VARCHAR" />
+    <result column="shops_kind" property="shopsKind" jdbcType="VARCHAR" />
+    <result column="shops_jifen" property="shopsJifen" jdbcType="VARCHAR" />
+    <result column="shops_status" property="shopsStatus" jdbcType="VARCHAR" />
+    <result column="shops_describe" property="shopsDescribe" jdbcType="VARCHAR" />
+    <result column="shops_create_date" property="shopsCreateDate" jdbcType="TIMESTAMP" />
+    <result column="shops_update_date" property="shopsUpdateDate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    shops_id, shops_code, shops_name, shops_kind, shops_jifen, shops_status, shops_describe, 
+    shops_create_date, shops_update_date
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from shops
+    where shops_id = #{shopsId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from shops
+    where shops_id = #{shopsId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.card.entity.Shops" >
+    insert into shops (shops_id, shops_code, shops_name, 
+      shops_kind, shops_jifen, shops_status, 
+      shops_describe, shops_create_date, shops_update_date
+      )
+    values (#{shopsId,jdbcType=INTEGER}, #{shopsCode,jdbcType=INTEGER}, #{shopsName,jdbcType=VARCHAR}, 
+      #{shopsKind,jdbcType=VARCHAR}, #{shopsJifen,jdbcType=VARCHAR}, #{shopsStatus,jdbcType=VARCHAR}, 
+      #{shopsDescribe,jdbcType=VARCHAR}, #{shopsCreateDate,jdbcType=TIMESTAMP}, #{shopsUpdateDate,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.card.entity.Shops" >
+    insert into shops
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="shopsId != null" >
+        shops_id,
+      </if>
+      <if test="shopsCode != null" >
+        shops_code,
+      </if>
+      <if test="shopsName != null" >
+        shops_name,
+      </if>
+      <if test="shopsKind != null" >
+        shops_kind,
+      </if>
+      <if test="shopsJifen != null" >
+        shops_jifen,
+      </if>
+      <if test="shopsStatus != null" >
+        shops_status,
+      </if>
+      <if test="shopsDescribe != null" >
+        shops_describe,
+      </if>
+      <if test="shopsCreateDate != null" >
+        shops_create_date,
+      </if>
+      <if test="shopsUpdateDate != null" >
+        shops_update_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="shopsId != null" >
+        #{shopsId,jdbcType=INTEGER},
+      </if>
+      <if test="shopsCode != null" >
+        #{shopsCode,jdbcType=INTEGER},
+      </if>
+      <if test="shopsName != null" >
+        #{shopsName,jdbcType=VARCHAR},
+      </if>
+      <if test="shopsKind != null" >
+        #{shopsKind,jdbcType=VARCHAR},
+      </if>
+      <if test="shopsJifen != null" >
+        #{shopsJifen,jdbcType=VARCHAR},
+      </if>
+      <if test="shopsStatus != null" >
+        #{shopsStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="shopsDescribe != null" >
+        #{shopsDescribe,jdbcType=VARCHAR},
+      </if>
+      <if test="shopsCreateDate != null" >
+        #{shopsCreateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="shopsUpdateDate != null" >
+        #{shopsUpdateDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.card.entity.Shops" >
+    update shops
+    <set >
+      <if test="shopsCode != null" >
+        shops_code = #{shopsCode,jdbcType=INTEGER},
+      </if>
+      <if test="shopsName != null" >
+        shops_name = #{shopsName,jdbcType=VARCHAR},
+      </if>
+      <if test="shopsKind != null" >
+        shops_kind = #{shopsKind,jdbcType=VARCHAR},
+      </if>
+      <if test="shopsJifen != null" >
+        shops_jifen = #{shopsJifen,jdbcType=VARCHAR},
+      </if>
+      <if test="shopsStatus != null" >
+        shops_status = #{shopsStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="shopsDescribe != null" >
+        shops_describe = #{shopsDescribe,jdbcType=VARCHAR},
+      </if>
+      <if test="shopsCreateDate != null" >
+        shops_create_date = #{shopsCreateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="shopsUpdateDate != null" >
+        shops_update_date = #{shopsUpdateDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where shops_id = #{shopsId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.card.entity.Shops" >
+    update shops
+    set shops_code = #{shopsCode,jdbcType=INTEGER},
+      shops_name = #{shopsName,jdbcType=VARCHAR},
+      shops_kind = #{shopsKind,jdbcType=VARCHAR},
+      shops_jifen = #{shopsJifen,jdbcType=VARCHAR},
+      shops_status = #{shopsStatus,jdbcType=VARCHAR},
+      shops_describe = #{shopsDescribe,jdbcType=VARCHAR},
+      shops_create_date = #{shopsCreateDate,jdbcType=TIMESTAMP},
+      shops_update_date = #{shopsUpdateDate,jdbcType=TIMESTAMP}
+    where shops_id = #{shopsId,jdbcType=INTEGER}
+  </update>
+</mapper>

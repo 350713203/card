@@ -1,0 +1,85 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop" 
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+	http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+	http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd
+	http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.0.xsd 
+	http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd
+	http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.0.xsd">
+	
+	<!--spring整合redis 
+		Jedis jedis = new Jedis("192.168.126.166", 6379);
+		
+		关于构造注入的注意事项
+		1.name属性:代表构造方法中的参数名称
+		注意事项:在使用构造注入时,程序打包部署时最好添加源码!!!!
+		如果没有导入源码.那么程序不会维护形参 则名称为arg0,arg1,arg2.
+		2.index属性
+			表示下标,从0开始.根据参数位置匹配构造方法.
+			User(String a,String b)
+			User(int a,String b)
+			User(Dog dog,String a)
+		3.type=""属性
+			表示参数类型,一般默认不写.由spring框架内部自动进行强转.
+			所以在为参数赋值时,必须严格的规范构造方法.否则
+			注入会有问题.		
+	 -->
+	<!--  <bean id="jedis" class="redis.clients.jedis.Jedis">
+	 	<constructor-arg index="0"  value="${redis.host}"  type="Dog"/>
+	 	<constructor-arg index="1"  value="${redis.port}"  type="int"/>
+	 </bean> -->
+	  <!--<bean id="jedis" class="redis.clients.jedis.Jedis">-->
+	 	<!--<constructor-arg name="host"  value="${redis.host}"/>-->
+	 	<!--<constructor-arg name="port"  value="${redis.port}"/>-->
+	 <!--</bean>-->
+	
+	<!-- 定义池对象poolConfigBean -->
+	<!-- <bean id="poolConfig" class="redis.clients.jedis.JedisPoolConfig">
+		<property name="maxTotal" value="${redis.maxTotal}"/>
+		<property name="maxIdle" value="${redis.maxIdle}"/>
+		<property name="testOnBorrow" value="${redis.testOnBorrow}"/>	
+	</bean> -->
+	
+	<!-- 定义哨兵连接池对象 -->
+	<!-- <bean id="jedisSentinelPool" class="redis.clients.jedis.JedisSentinelPool">
+		<constructor-arg name="masterName" value="${redis.sentinel.master}"/>
+		<constructor-arg name="sentinels">
+			<set>
+				<value>${redis.sentinel}</value>
+			</set>
+		</constructor-arg> -->
+		<!--定义池对象  -->
+		<!-- <constructor-arg name="poolConfig" ref="poolConfig"/>
+	</bean> -->
+	
+	<!-- jedis 配置-->  
+    <!--<bean id="poolConfig" class="redis.clients.jedis.JedisPoolConfig" >
+        &lt;!&ndash;最大空闲数&ndash;&gt;
+        <property name="maxIdle" value="${redis.maxIdle}" />  
+        &lt;!&ndash;最大建立连接等待时间&ndash;&gt;
+        <property name="maxWaitMillis" value="${redis.maxWait}" />  
+        &lt;!&ndash;是否在从池中取出连接前进行检验,如果检验失败,则从池中去除连接并尝试取出另一个&ndash;&gt;
+        <property name="testOnBorrow" value="${redis.testOnBorrow}" />  
+        <property name="maxTotal" value="${redis.maxTotal}" />  
+        <property name="minIdle" value="${redis.minIdle}" />  
+    </bean>
+    
+     &lt;!&ndash;通过工厂模式获取数据  &ndash;&gt;
+    <bean id="jedisCluster" class="com.jt.common.factory.JedisClusterFactory">
+    	&lt;!&ndash;引入配置文件源文件  &ndash;&gt;
+    	<property name="propertySource">
+    		<value>classpath:/property/redis.properties</value>
+    	</property>
+    	&lt;!&ndash;引入池配置文件  &ndash;&gt;
+    	<property name="poolConfig" ref="poolConfig"/>
+    	&lt;!&ndash;添加配置前缀&ndash;&gt;
+    	<property name="redisNodePrefix" value="redis.cluster"/>
+    </bean>-->
+	
+	
+	
+</beans>

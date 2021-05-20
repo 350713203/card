@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.card.dao.PosMapper" >
+  <resultMap id="BaseResultMap" type="com.card.entity.Pos" >
+    <id column="pos_id" property="posId" jdbcType="INTEGER" />
+    <result column="user_id" property="userId" jdbcType="INTEGER" />
+    <result column="pos_kind_id" property="posKindId" jdbcType="VARCHAR" />
+    <result column="pos_name" property="posName" jdbcType="VARCHAR" />
+    <result column="pos_total_name" property="posTotalName" jdbcType="VARCHAR" />
+    <result column="pos_standard_pay" property="posStandardPay" jdbcType="DECIMAL" />
+    <result column="pos_flash_pay" property="posFlashPay" jdbcType="DECIMAL" />
+    <result column="pos_ifadd3" property="posIfadd3" jdbcType="DECIMAL" />
+    <result column="pos_bank" property="posBank" jdbcType="VARCHAR" />
+    <result column="pos_status" property="posStatus" jdbcType="VARCHAR" />
+    <result column="pos_describe" property="posDescribe" jdbcType="VARCHAR" />
+    <result column="pos_create_date" property="posCreateDate" jdbcType="TIMESTAMP" />
+    <result column="pos_update_date" property="posUpdateDate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    pos_id, user_id, pos_kind_id, pos_name, pos_total_name, pos_standard_pay, pos_flash_pay, 
+    pos_ifadd3, pos_bank, pos_status, pos_describe, pos_create_date, pos_update_date
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from pos
+    where pos_id = #{posId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from pos
+    where pos_id = #{posId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.card.entity.Pos" >
+    insert into pos (pos_id, user_id, pos_kind_id, 
+      pos_name, pos_total_name, pos_standard_pay, 
+      pos_flash_pay, pos_ifadd3, pos_bank, 
+      pos_status, pos_describe, pos_create_date, 
+      pos_update_date)
+    values (#{posId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{posKindId,jdbcType=VARCHAR}, 
+      #{posName,jdbcType=VARCHAR}, #{posTotalName,jdbcType=VARCHAR}, #{posStandardPay,jdbcType=DECIMAL}, 
+      #{posFlashPay,jdbcType=DECIMAL}, #{posIfadd3,jdbcType=DECIMAL}, #{posBank,jdbcType=VARCHAR}, 
+      #{posStatus,jdbcType=VARCHAR}, #{posDescribe,jdbcType=VARCHAR}, #{posCreateDate,jdbcType=TIMESTAMP}, 
+      #{posUpdateDate,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.card.entity.Pos" >
+    insert into pos
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="posId != null" >
+        pos_id,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="posKindId != null" >
+        pos_kind_id,
+      </if>
+      <if test="posName != null" >
+        pos_name,
+      </if>
+      <if test="posTotalName != null" >
+        pos_total_name,
+      </if>
+      <if test="posStandardPay != null" >
+        pos_standard_pay,
+      </if>
+      <if test="posFlashPay != null" >
+        pos_flash_pay,
+      </if>
+      <if test="posIfadd3 != null" >
+        pos_ifadd3,
+      </if>
+      <if test="posBank != null" >
+        pos_bank,
+      </if>
+      <if test="posStatus != null" >
+        pos_status,
+      </if>
+      <if test="posDescribe != null" >
+        pos_describe,
+      </if>
+      <if test="posCreateDate != null" >
+        pos_create_date,
+      </if>
+      <if test="posUpdateDate != null" >
+        pos_update_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="posId != null" >
+        #{posId,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="posKindId != null" >
+        #{posKindId,jdbcType=VARCHAR},
+      </if>
+      <if test="posName != null" >
+        #{posName,jdbcType=VARCHAR},
+      </if>
+      <if test="posTotalName != null" >
+        #{posTotalName,jdbcType=VARCHAR},
+      </if>
+      <if test="posStandardPay != null" >
+        #{posStandardPay,jdbcType=DECIMAL},
+      </if>
+      <if test="posFlashPay != null" >
+        #{posFlashPay,jdbcType=DECIMAL},
+      </if>
+      <if test="posIfadd3 != null" >
+        #{posIfadd3,jdbcType=DECIMAL},
+      </if>
+      <if test="posBank != null" >
+        #{posBank,jdbcType=VARCHAR},
+      </if>
+      <if test="posStatus != null" >
+        #{posStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="posDescribe != null" >
+        #{posDescribe,jdbcType=VARCHAR},
+      </if>
+      <if test="posCreateDate != null" >
+        #{posCreateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="posUpdateDate != null" >
+        #{posUpdateDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.card.entity.Pos" >
+    update pos
+    <set >
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="posKindId != null" >
+        pos_kind_id = #{posKindId,jdbcType=VARCHAR},
+      </if>
+      <if test="posName != null" >
+        pos_name = #{posName,jdbcType=VARCHAR},
+      </if>
+      <if test="posTotalName != null" >
+        pos_total_name = #{posTotalName,jdbcType=VARCHAR},
+      </if>
+      <if test="posStandardPay != null" >
+        pos_standard_pay = #{posStandardPay,jdbcType=DECIMAL},
+      </if>
+      <if test="posFlashPay != null" >
+        pos_flash_pay = #{posFlashPay,jdbcType=DECIMAL},
+      </if>
+      <if test="posIfadd3 != null" >
+        pos_ifadd3 = #{posIfadd3,jdbcType=DECIMAL},
+      </if>
+      <if test="posBank != null" >
+        pos_bank = #{posBank,jdbcType=VARCHAR},
+      </if>
+      <if test="posStatus != null" >
+        pos_status = #{posStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="posDescribe != null" >
+        pos_describe = #{posDescribe,jdbcType=VARCHAR},
+      </if>
+      <if test="posCreateDate != null" >
+        pos_create_date = #{posCreateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="posUpdateDate != null" >
+        pos_update_date = #{posUpdateDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where pos_id = #{posId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.card.entity.Pos" >
+    update pos
+    set user_id = #{userId,jdbcType=INTEGER},
+      pos_kind_id = #{posKindId,jdbcType=VARCHAR},
+      pos_name = #{posName,jdbcType=VARCHAR},
+      pos_total_name = #{posTotalName,jdbcType=VARCHAR},
+      pos_standard_pay = #{posStandardPay,jdbcType=DECIMAL},
+      pos_flash_pay = #{posFlashPay,jdbcType=DECIMAL},
+      pos_ifadd3 = #{posIfadd3,jdbcType=DECIMAL},
+      pos_bank = #{posBank,jdbcType=VARCHAR},
+      pos_status = #{posStatus,jdbcType=VARCHAR},
+      pos_describe = #{posDescribe,jdbcType=VARCHAR},
+      pos_create_date = #{posCreateDate,jdbcType=TIMESTAMP},
+      pos_update_date = #{posUpdateDate,jdbcType=TIMESTAMP}
+    where pos_id = #{posId,jdbcType=INTEGER}
+  </update>
+</mapper>

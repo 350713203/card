@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.card.dao.UserMapper" >
+  <resultMap id="BaseResultMap" type="com.card.entity.User" >
+    <id column="user_id" property="userId" jdbcType="INTEGER" />
+    <result column="user_name" property="userName" jdbcType="VARCHAR" />
+    <result column="user_telphone" property="userTelphone" jdbcType="VARCHAR" />
+    <result column="user_emai" property="userEmai" jdbcType="VARCHAR" />
+    <result column="user_total_card" property="userTotalCard" jdbcType="INTEGER" />
+    <result column="user_total_pos" property="userTotalPos" jdbcType="INTEGER" />
+    <result column="user_describe" property="userDescribe" jdbcType="VARCHAR" />
+    <result column="user_create_date" property="userCreateDate" jdbcType="TIMESTAMP" />
+    <result column="user_update_date" property="userUpdateDate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    user_id, user_name, user_telphone, user_emai, user_total_card, user_total_pos, user_describe, 
+    user_create_date, user_update_date
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from user
+    where user_id = #{userId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from user
+    where user_id = #{userId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.card.entity.User" >
+    insert into user (user_id, user_name, user_telphone, 
+      user_emai, user_total_card, user_total_pos, 
+      user_describe, user_create_date, user_update_date
+      )
+    values (#{userId,jdbcType=INTEGER}, #{userName,jdbcType=VARCHAR}, #{userTelphone,jdbcType=VARCHAR}, 
+      #{userEmai,jdbcType=VARCHAR}, #{userTotalCard,jdbcType=INTEGER}, #{userTotalPos,jdbcType=INTEGER}, 
+      #{userDescribe,jdbcType=VARCHAR}, #{userCreateDate,jdbcType=TIMESTAMP}, #{userUpdateDate,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.card.entity.User" >
+    insert into user
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="userName != null" >
+        user_name,
+      </if>
+      <if test="userTelphone != null" >
+        user_telphone,
+      </if>
+      <if test="userEmai != null" >
+        user_emai,
+      </if>
+      <if test="userTotalCard != null" >
+        user_total_card,
+      </if>
+      <if test="userTotalPos != null" >
+        user_total_pos,
+      </if>
+      <if test="userDescribe != null" >
+        user_describe,
+      </if>
+      <if test="userCreateDate != null" >
+        user_create_date,
+      </if>
+      <if test="userUpdateDate != null" >
+        user_update_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="userId != null" >
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="userName != null" >
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="userTelphone != null" >
+        #{userTelphone,jdbcType=VARCHAR},
+      </if>
+      <if test="userEmai != null" >
+        #{userEmai,jdbcType=VARCHAR},
+      </if>
+      <if test="userTotalCard != null" >
+        #{userTotalCard,jdbcType=INTEGER},
+      </if>
+      <if test="userTotalPos != null" >
+        #{userTotalPos,jdbcType=INTEGER},
+      </if>
+      <if test="userDescribe != null" >
+        #{userDescribe,jdbcType=VARCHAR},
+      </if>
+      <if test="userCreateDate != null" >
+        #{userCreateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="userUpdateDate != null" >
+        #{userUpdateDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.card.entity.User" >
+    update user
+    <set >
+      <if test="userName != null" >
+        user_name = #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="userTelphone != null" >
+        user_telphone = #{userTelphone,jdbcType=VARCHAR},
+      </if>
+      <if test="userEmai != null" >
+        user_emai = #{userEmai,jdbcType=VARCHAR},
+      </if>
+      <if test="userTotalCard != null" >
+        user_total_card = #{userTotalCard,jdbcType=INTEGER},
+      </if>
+      <if test="userTotalPos != null" >
+        user_total_pos = #{userTotalPos,jdbcType=INTEGER},
+      </if>
+      <if test="userDescribe != null" >
+        user_describe = #{userDescribe,jdbcType=VARCHAR},
+      </if>
+      <if test="userCreateDate != null" >
+        user_create_date = #{userCreateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="userUpdateDate != null" >
+        user_update_date = #{userUpdateDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where user_id = #{userId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.card.entity.User" >
+    update user
+    set user_name = #{userName,jdbcType=VARCHAR},
+      user_telphone = #{userTelphone,jdbcType=VARCHAR},
+      user_emai = #{userEmai,jdbcType=VARCHAR},
+      user_total_card = #{userTotalCard,jdbcType=INTEGER},
+      user_total_pos = #{userTotalPos,jdbcType=INTEGER},
+      user_describe = #{userDescribe,jdbcType=VARCHAR},
+      user_create_date = #{userCreateDate,jdbcType=TIMESTAMP},
+      user_update_date = #{userUpdateDate,jdbcType=TIMESTAMP}
+    where user_id = #{userId,jdbcType=INTEGER}
+  </update>
+</mapper>

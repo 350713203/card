@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.card.dao.CardticketMapper" >
+  <resultMap id="BaseResultMap" type="com.card.entity.Cardticket" >
+    <id column="ticket_id" property="ticketId" jdbcType="INTEGER" />
+    <result column="user_id" property="userId" jdbcType="INTEGER" />
+    <result column="ticket_time" property="ticketTime" jdbcType="TIMESTAMP" />
+    <result column="ticket_bank" property="ticketBank" jdbcType="VARCHAR" />
+    <result column="ticket_pos" property="ticketPos" jdbcType="VARCHAR" />
+    <result column="ticket_shops_name" property="ticketShopsName" jdbcType="VARCHAR" />
+    <result column="ticket_place_name" property="ticketPlaceName" jdbcType="VARCHAR" />
+    <result column="ticket_isticket" property="ticketIsticket" jdbcType="VARCHAR" />
+    <result column="ticket_pos_kind" property="ticketPosKind" jdbcType="INTEGER" />
+    <result column="ticket_amount" property="ticketAmount" jdbcType="DECIMAL" />
+    <result column="ticket_rate_money" property="ticketRateMoney" jdbcType="DECIMAL" />
+    <result column="ticket_add_money" property="ticketAddMoney" jdbcType="DECIMAL" />
+    <result column="ticket_actual_money" property="ticketActualMoney" jdbcType="DECIMAL" />
+    <result column="ticket_describe" property="ticketDescribe" jdbcType="VARCHAR" />
+    <result column="ticket_create_date" property="ticketCreateDate" jdbcType="TIMESTAMP" />
+    <result column="ticket_update_date" property="ticketUpdateDate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ticket_id, user_id, ticket_time, ticket_bank, ticket_pos, ticket_shops_name, ticket_place_name, 
+    ticket_isticket, ticket_pos_kind, ticket_amount, ticket_rate_money, ticket_add_money, 
+    ticket_actual_money, ticket_describe, ticket_create_date, ticket_update_date
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from ticket
+    where ticket_id = #{ticketId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from ticket
+    where ticket_id = #{ticketId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.card.entity.Cardticket" >
+    insert into ticket (ticket_id, user_id, ticket_time, 
+      ticket_bank, ticket_pos, ticket_shops_name, 
+      ticket_place_name, ticket_isticket, ticket_pos_kind, 
+      ticket_amount, ticket_rate_money, ticket_add_money, 
+      ticket_actual_money, ticket_describe, ticket_create_date, 
+      ticket_update_date)
+    values (#{ticketId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{ticketTime,jdbcType=TIMESTAMP}, 
+      #{ticketBank,jdbcType=VARCHAR}, #{ticketPos,jdbcType=VARCHAR}, #{ticketShopsName,jdbcType=VARCHAR}, 
+      #{ticketPlaceName,jdbcType=VARCHAR}, #{ticketIsticket,jdbcType=VARCHAR}, #{ticketPosKind,jdbcType=INTEGER}, 
+      #{ticketAmount,jdbcType=DECIMAL}, #{ticketRateMoney,jdbcType=DECIMAL}, #{ticketAddMoney,jdbcType=DECIMAL}, 
+      #{ticketActualMoney,jdbcType=DECIMAL}, #{ticketDescribe,jdbcType=VARCHAR}, #{ticketCreateDate,jdbcType=TIMESTAMP}, 
+      #{ticketUpdateDate,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.card.entity.Cardticket" >
+    insert into ticket
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="ticketId != null" >
+        ticket_id,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="ticketTime != null" >
+        ticket_time,
+      </if>
+      <if test="ticketBank != null" >
+        ticket_bank,
+      </if>
+      <if test="ticketPos != null" >
+        ticket_pos,
+      </if>
+      <if test="ticketShopsName != null" >
+        ticket_shops_name,
+      </if>
+      <if test="ticketPlaceName != null" >
+        ticket_place_name,
+      </if>
+      <if test="ticketIsticket != null" >
+        ticket_isticket,
+      </if>
+      <if test="ticketPosKind != null" >
+        ticket_pos_kind,
+      </if>
+      <if test="ticketAmount != null" >
+        ticket_amount,
+      </if>
+      <if test="ticketRateMoney != null" >
+        ticket_rate_money,
+      </if>
+      <if test="ticketAddMoney != null" >
+        ticket_add_money,
+      </if>
+      <if test="ticketActualMoney != null" >
+        ticket_actual_money,
+      </if>
+      <if test="ticketDescribe != null" >
+        ticket_describe,
+      </if>
+      <if test="ticketCreateDate != null" >
+        ticket_create_date,
+      </if>
+      <if test="ticketUpdateDate != null" >
+        ticket_update_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="ticketId != null" >
+        #{ticketId,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="ticketTime != null" >
+        #{ticketTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ticketBank != null" >
+        #{ticketBank,jdbcType=VARCHAR},
+      </if>
+      <if test="ticketPos != null" >
+        #{ticketPos,jdbcType=VARCHAR},
+      </if>
+      <if test="ticketShopsName != null" >
+        #{ticketShopsName,jdbcType=VARCHAR},
+      </if>
+      <if test="ticketPlaceName != null" >
+        #{ticketPlaceName,jdbcType=VARCHAR},
+      </if>
+      <if test="ticketIsticket != null" >
+        #{ticketIsticket,jdbcType=VARCHAR},
+      </if>
+      <if test="ticketPosKind != null" >
+        #{ticketPosKind,jdbcType=INTEGER},
+      </if>
+      <if test="ticketAmount != null" >
+        #{ticketAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="ticketRateMoney != null" >
+        #{ticketRateMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="ticketAddMoney != null" >
+        #{ticketAddMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="ticketActualMoney != null" >
+        #{ticketActualMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="ticketDescribe != null" >
+        #{ticketDescribe,jdbcType=VARCHAR},
+      </if>
+      <if test="ticketCreateDate != null" >
+        #{ticketCreateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ticketUpdateDate != null" >
+        #{ticketUpdateDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.card.entity.Cardticket" >
+    update ticket
+    <set >
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="ticketTime != null" >
+        ticket_time = #{ticketTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ticketBank != null" >
+        ticket_bank = #{ticketBank,jdbcType=VARCHAR},
+      </if>
+      <if test="ticketPos != null" >
+        ticket_pos = #{ticketPos,jdbcType=VARCHAR},
+      </if>
+      <if test="ticketShopsName != null" >
+        ticket_shops_name = #{ticketShopsName,jdbcType=VARCHAR},
+      </if>
+      <if test="ticketPlaceName != null" >
+        ticket_place_name = #{ticketPlaceName,jdbcType=VARCHAR},
+      </if>
+      <if test="ticketIsticket != null" >
+        ticket_isticket = #{ticketIsticket,jdbcType=VARCHAR},
+      </if>
+      <if test="ticketPosKind != null" >
+        ticket_pos_kind = #{ticketPosKind,jdbcType=INTEGER},
+      </if>
+      <if test="ticketAmount != null" >
+        ticket_amount = #{ticketAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="ticketRateMoney != null" >
+        ticket_rate_money = #{ticketRateMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="ticketAddMoney != null" >
+        ticket_add_money = #{ticketAddMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="ticketActualMoney != null" >
+        ticket_actual_money = #{ticketActualMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="ticketDescribe != null" >
+        ticket_describe = #{ticketDescribe,jdbcType=VARCHAR},
+      </if>
+      <if test="ticketCreateDate != null" >
+        ticket_create_date = #{ticketCreateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ticketUpdateDate != null" >
+        ticket_update_date = #{ticketUpdateDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where ticket_id = #{ticketId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.card.entity.Cardticket" >
+    update ticket
+    set user_id = #{userId,jdbcType=INTEGER},
+      ticket_time = #{ticketTime,jdbcType=TIMESTAMP},
+      ticket_bank = #{ticketBank,jdbcType=VARCHAR},
+      ticket_pos = #{ticketPos,jdbcType=VARCHAR},
+      ticket_shops_name = #{ticketShopsName,jdbcType=VARCHAR},
+      ticket_place_name = #{ticketPlaceName,jdbcType=VARCHAR},
+      ticket_isticket = #{ticketIsticket,jdbcType=VARCHAR},
+      ticket_pos_kind = #{ticketPosKind,jdbcType=INTEGER},
+      ticket_amount = #{ticketAmount,jdbcType=DECIMAL},
+      ticket_rate_money = #{ticketRateMoney,jdbcType=DECIMAL},
+      ticket_add_money = #{ticketAddMoney,jdbcType=DECIMAL},
+      ticket_actual_money = #{ticketActualMoney,jdbcType=DECIMAL},
+      ticket_describe = #{ticketDescribe,jdbcType=VARCHAR},
+      ticket_create_date = #{ticketCreateDate,jdbcType=TIMESTAMP},
+      ticket_update_date = #{ticketUpdateDate,jdbcType=TIMESTAMP}
+    where ticket_id = #{ticketId,jdbcType=INTEGER}
+  </update>
+</mapper>

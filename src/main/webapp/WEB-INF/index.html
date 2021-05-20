@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>card</title>
+    <link href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+<h2>card</h2>
+<div class="container">
+    <div class="row">
+        <div class="col-sm-2 col-md-2 col-lg-2"
+             style="background-color: #dedef8;
+         box-shadow: inset 1px -1px 1px #444,
+         inset -1px 1px 1px #444;">
+            <ul class="treeview-menu">
+                <li><a id="shuaka">刷卡</a></li>
+                <li><a id="ticket">刷卡记录</a></li>
+                <li><a id="area">地区</a></li>
+                <li><a id="bank">银行</a></li>
+                <li><a id="pos">pos机</a></li>
+                <li><a id="shops">商铺</a></li>
+                <li><a id="user">用户</a></li>
+
+            </ul>
+        </div>
+
+        <div id="charu" class="col-sm-10 col-md-10 col-lg-10"
+             style="background-color: #dedef8;
+         box-shadow: inset 1px -1px 1px #444,
+         inset -1px 1px 1px #444;">
+            <div id="div1">
+                <button id="button">按钮</button>
+            </div>
+            <div id="div2">
+
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    //说明，在此位置添加js，使用load函数加载页面
+    $(function(){
+        doLoadUI("shuaka","shuaka.shtml");
+        doLoadUI("bank","bankPage.shtml");
+        // doLoadUI("load-dept-id","dept/doDeptListUI.do");
+        // doLoadUI("load-role-id","role/doRoleListUI.do");
+        // doLoadUI("load-user-id","user/doUserListUI.do");
+    });
+    function doLoadUI(id,url){
+        $("#"+id).click(function(){
+            //load函数为一个特殊的ajax函数
+            //异步加载url对应的资源,并将资源插入到#mainContentId位置
+            $("#charu").load(url,function () {
+                //暂时先加上，后面结合场景讲为什么
+                $("#charu").removeData();
+            });
+        });
+    }
+
+   /* $("#shuaka").click(function(){
+        $.ajax({url:"shuaka.shtml",success:function(result){
+                $("#div2").html(result);
+            }});
+    });*/
+
+   /* $("#shuaka").click(function(){
+        $("#div2").load("shuaka.shtml");
+    });*/
+
+</script>
+</body>
+</html>

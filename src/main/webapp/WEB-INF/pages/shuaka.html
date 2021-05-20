@@ -1,0 +1,211 @@
+<div id="shuakapage">
+    <!--<form>-->
+        <table align="center" border="1" 	bordercolor="red" bgcolor="lightgray"  cellspacing="0">
+            <tr>
+                <td>刷卡时间：</td>
+                <td>
+                    <input type="text" name="ticketTime"/>
+                </td>
+            </tr>
+            <tr>
+                <td>刷卡银行：</td>
+                <td>
+                    <input type="text" name="ticketBank"/>
+                </td>
+            </tr>
+            <tr>
+                <td>POS机：</td>
+                <td>
+                    <select id="pos">
+                        <option value="hlb">合利宝</option>
+                        <option value="ls">乐刷</option>
+                        <option value="hf">汇付</option>
+                        <option value="hk">海科</option>
+                        <option value="lp">陆POS</option>
+                        <option value="lkl">拉卡拉</option>
+                        <option value="dp">点POS</option>
+                        <option value="kq">快钱</option>
+                    </select>
+                </td>
+
+            </tr>
+            <tr>
+                <td>消费类型：</td>
+                <td>
+                    <input type="text" name="ticketShopsName"/>
+                </td>
+            </tr>
+            <tr>
+                <td>商铺号：</td>
+                <td>
+                    <input type="text" name="ticketPlaceName"/>
+                </td>
+            </tr>
+            <tr>
+                <td>小票：</td>
+                <td>
+                    <input type="radio" name="ticketIsticket" value="no" checked="true"/>否
+                    <input type="radio" name="ticketIsticket" value="yes"/>是
+                </td>
+            </tr>
+            <tr>
+                <td>刷卡方式：</td>
+                <td>
+                    <input type="radio" name="ticketPosKind" value="0" onchange="show()"/>标准
+                    <input type="radio" name="ticketPosKind" value="1" onchange="show()" checked/>闪付
+                </td>
+            </tr>
+            <tr>
+                <td>金额 ：</td>
+                <td>
+                    <input type="text" id="ticketAmount" name="ticketAmount" onchange="show()"/>
+                </td>
+            </tr>
+            <tr>
+                <td>额外费用 ：</td>
+                <td>
+                    <input type="text" id="ticketAddMoney" name="ticketAddMoney" value="0" onchange="show()"/>
+                </td>
+            </tr>
+            <tr>
+                <td>手续费 ：</td>
+                <td>
+                    <input type="text" id="ticketRateMoney" name="ticketRateMoney"/>
+                </td>
+            </tr>
+            <tr>
+                <td>到账金额 ：</td>
+                <td>
+                    <input type="text" id="ticketActualMoney" name="ticketActualMoney"/>
+                </td>
+            </tr>
+            <tr>
+                <td>描述 ：</td>
+                <td>
+                    <textarea name="ticketDescribe"></textarea>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" align="center">
+                    <!--<input type="submit" name="submit" value="提交"/>-->
+                    <!--<input type="reset" value="重置"/>-->
+                   <button id="jitiao">提交</button>
+                </td>
+            </tr>
+        </table>
+    <!--</form>-->
+</div>
+<!--测试成功-->
+<!--<div id="ceshi">-->
+    <!--<input type="text" name="ceshivalue"/>-->
+    <!--<button id="jitiao2">提交</button>-->
+<!--</div>-->
+
+<script>
+    /*在刷卡时间上显示时间*/
+    //在Jquery里格式化Date日期时间数据
+    function timeStamp2String(time){
+        var datetime = new Date();
+        datetime.setTime(time);
+        var year = datetime.getFullYear();
+        var month = datetime.getMonth() + 1 < 10 ? "0" + (datetime.getMonth() + 1) : datetime.getMonth() + 1;
+        var date = datetime.getDate() < 10 ? "0" + datetime.getDate() : datetime.getDate();
+        var hour = datetime.getHours()< 10 ? "0" + datetime.getHours() : datetime.getHours();
+        var minute = datetime.getMinutes()< 10 ? "0" + datetime.getMinutes() : datetime.getMinutes();
+        var second = datetime.getSeconds()< 10 ? "0" + datetime.getSeconds() : datetime.getSeconds();
+        return year + "/" + month + "/" + date+" "+hour+":"+minute+":"+second;
+    }
+    $(function(){
+        $('input[name=ticketTime]').val(timeStamp2String(new Date().getTime()));
+    });
+
+
+
+
+    /*$("#shuakapage").html("东设计费");*/
+    // $("[name=ticketTime]").html("测试")
+   $(document).ready(function(){
+        $("#jitiao").click(function () {
+            var url="/ticket.shtml";
+            // var ticketBank1=$('input[name=ticketBank]').val();
+            // $.ajax({url:url,data:{name:ticketBank1},async:true,success:function (result) {
+            //         alert(result);
+            //     }});
+            // alert(ticketBank1)
+            var msy={
+                ticketTime:$('input[name=ticketTime]').val(),
+                ticketBank:$('input[name=ticketBank]').val(),
+                // ticketPos:$("#pos").find("option:selected").text(),
+                ticketPos:$('select#pos option:selected').text(),
+                // ticketPos:$("#pos option:selected").text()
+                ticketShopsName:$('input[name=ticketShopsName]').val(),
+                ticketPlaceName:$('input[name=ticketPlaceName]').val(),
+                // $('input:radio:checked').val()；
+                // $("input[type='radio']:checked").val();
+                // $("input[name='rd']:checked").val();
+                ticketIsticket:$('input[name=ticketIsticket]:checked').val(),
+                ticketPosKind:$('input[name=ticketPosKind]:checked').val(),
+                ticketAmount:$('input[name=ticketAmount]').val(),
+                ticketAddMoney:$('input[name=ticketAddMoney]').val(),
+                ticketRateMoney:$('input[name=ticketRateMoney]').val(),
+                ticketActualMoney:$('input[name=ticketActualMoney]').val()
+            };
+            $.ajax({url:url,data:msy,async:true,success:function (result) {
+                     $("#shuakapage").html(result.ticketBank)
+                }})
+        });
+    });
+   //金额的同步默示
+    function show(){
+        var rate;//费率
+        var num1 = document.getElementById('ticketAmount').value; //获取第一个输入框的值
+        if($('input[name=ticketPosKind]:checked').val()==0){
+            rate=0.006;
+        }else {
+            rate=0.0038
+            if(num1>1000){
+                alert("闪付金额不能大于1000");
+                $("#charu").load("shuaka.shtml");
+            }
+        }
+        var ticketAddMoney=document.getElementById('ticketAddMoney').value;
+        if (isNaN(num1)) {  //如果为非数字，结果为空
+            document.getElementById('ticketRsateMoney').value = "";
+            document.getElementById('ticketActualMoney').value = "";
+        } else {  //将第二个输入框设置为美元值乘以汇率的结果
+            var ticketRateMoney=document.getElementById('ticketRateMoney').value = toDecimal2(num1*rate);
+            document.getElementById('ticketActualMoney').value = toDecimal2(num1-ticketAddMoney-ticketRateMoney);
+        }
+    }
+
+    //保留两位小数
+    function toDecimal2(x) {
+        var f = parseFloat(x);
+        if (isNaN(f)) {
+            return false;
+        }
+        var f = Math.round(x*100 )/100 ;
+        var s = f.toString();
+        var rs = s.indexOf('.' );
+        if (rs < 0) {
+            rs = s.length;
+            s += '.';
+        }
+        while (s.length <= rs + 2) {
+            s += '0';
+        }
+        return s;
+    }
+
+    //测试成功
+    // $("#jitiao2").click(function () {
+    //     var ticketBank=$('input[name=ceshivalue]').val();
+    //     alert(ticketBank)
+    // });
+
+
+    // $.ajax({url:url,data:{name:name,id:9857,address:"北京"},async:true,success:function(result){
+    //         $("#testJson").html(result.name+result.address);
+    //     }});
+
+</script>
